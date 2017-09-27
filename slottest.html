@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>slot</title>
+	<style>
+		.panel{
+			max-width: 300px;
+			background: lightgray;
+			border: 1px solid green;
+			margin-bottom: 15px;
+		}
+		.panel > *{
+			padding: 15px;
+		}
+		.panel .title{
+			border-bottom: 1px solid black;
+		}
+		.panel .footer{
+			border-top: 1px solid black;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<panel>
+			<div>jjjjj</div>
+			
+		</panel>
+
+	</div>
+
+	<template id="panel-component">
+		<div class="panel">
+			<div class="title">
+				<slot>ddddd</slot>
+			</div>
+			<div class="content">
+				<slot>kkkk</slot>
+			</div>
+			<div class="footer">
+				<slot>
+					更多信息
+				</slot>
+			</div>
+		</div>
+	</template>
+
+	<script src="lib/vue.js"></script>
+	<script>
+		Vue.component('panel',{
+			template:'#panel-component',
+		});
+		new Vue({
+			el:'#app',
+		})
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>liked</title>
+	<style>
+		.like{
+			background: pink;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<like></like>
+	</div>
+	
+	<template id="like_component">
+		<button @click="likedadd" :class="{like : liked_judge}">
+			赞{{liked}}
+		</button>
+	</template>
+	<script src="lib/vue.js"></script>
+	<script>
+		Vue.component('like',{
+			template:'#like_component',
+			data:function(){
+				return{
+					liked:10,
+					liked_judge:false,
+				}
+			},
+		
+			methods:{
+				likedadd: function(){
+					if(!this.liked_judge)
+						this.liked++;
+					else
+						this.liked--;
+					this.liked_judge = !this.liked_judge;
+				}
+			}
+		})
+
+		new Vue({
+			el:'#app'
+
+		})
+	</script>
+</body>
+</html>

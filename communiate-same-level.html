@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>communicate son-father</title>
+</head>
+<body>
+	<div id="app">
+		<balance></balance>
+		<show></show>		
+	</div>
+
+	<script src="lib/vue.js"></script>
+	<script>
+		var Event = new Vue();
+
+		Vue.component('balance',{
+			template:`
+				<div>
+					我说：<input type="text" v-model="i_said" @keyup="on_change" />
+				</div>
+			`,
+			methods:{
+				on_change:function(){
+					Event.$emit('balancesay',this.i_said);
+				}
+			},
+			data:function(){
+				return{
+					i_said:'',
+				}
+			}
+		
+			
+		});
+
+		Vue.component('show',{
+			template:'<div>showsay:{{show_said}}</div>',
+			data:function(){
+				return{
+					show_said:'',
+				}
+			},
+			mounted : function () {
+				var me = this;
+				Event.$on('balancesay',function(data){
+					console.log(data);
+					me.show_said = data;
+				});
+			}
+		});
+
+		new Vue({
+			el:'#app'
+		})
+	</script>
+</body>
+</html>

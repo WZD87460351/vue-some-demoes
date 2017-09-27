@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>zidingyi-function</title>
+	<style>
+		.card{
+			height: 100px;
+			width: 300px;
+			background: gray;
+			margin-bottom: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<div v-pin:true.bottom.left="card1.pained" class="card">
+			<button @click="card1.pained = !card1.pained">钉住/取消</button>
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad dolore quia, quis 
+		</div>
+
+		<div v-pin="card2.pained" class="card">
+			<a @click="card2.pained = !card2.pained" href="#">pin it</a>
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad dolore quia, quis 
+		</div>
+
+		<div>
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi id explicabo, fugit dolorem nemo minus unde eligendi magnam sint! Atque ratione dignissimos quis incidunt quidem veniam facere natus totam adipisci.
+		</div>
+		<div>
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi id explicabo, fugit dolorem nemo minus unde eligendi magnam sint! Atque ratione dignissimos quis incidunt quidem veniam facere natus totam adipisci.
+		</div>
+		<div>
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi id explicabo, fugit dolorem nemo minus unde eligendi magnam sint! Atque ratione dignissimos quis incidunt quidem veniam facere natus totam adipisci.
+		</div>
+		<div>
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi id explicabo, fugit dolorem nemo minus unde eligendi magnam sint! Atque ratione dignissimos quis incidunt quidem veniam facere natus totam adipisci.
+		</div>
+		<div>
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi id explicabo, fugit dolorem nemo minus unde eligendi magnam sint! Atque ratione dignissimos quis incidunt quidem veniam facere natus totam adipisci.
+		</div>
+		<div>
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi id explicabo, fugit dolorem nemo minus unde eligendi magnam sint! Atque ratione dignissimos quis incidunt quidem veniam facere natus totam adipisci.
+		</div>
+		<div>
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi id explicabo, fugit dolorem nemo minus unde eligendi magnam sint! Atque ratione dignissimos quis incidunt quidem veniam facere natus totam adipisci.
+		</div>
+		<div>
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi id explicabo, fugit dolorem nemo minus unde eligendi magnam sint! Atque ratione dignissimos quis incidunt quidem veniam facere natus totam adipisci.
+		</div>
+		<div>
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi id explicabo, fugit dolorem nemo minus unde eligendi magnam sint! Atque ratione dignissimos quis incidunt quidem veniam facere natus totam adipisci.
+		</div>
+		<div>
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi id explicabo, fugit dolorem nemo minus unde eligendi magnam sint! Atque ratione dignissimos quis incidunt quidem veniam facere natus totam adipisci.
+		</div>
+
+	</div>
+
+	<script src="lib/vue.js"></script>
+	<script>
+	Vue.directive('pin',function(el,binding){
+		var pained = binding.value;
+		var position = binding.modifiers;
+		var warning = binding.arg;
+		if(pained){
+			el.style.position = 'fixed';
+			for(var key in position){
+				if(position[key]){
+					el.style[key] = '10px';
+				}
+			}
+			if(warning === 'true'){
+				el.style.background = 'green';
+			}
+		}else{
+			el.style.position = 'static';
+		}
+
+	})
+
+	new Vue({
+		el:'#app',
+		data:{
+			card1:{
+				pained:false,
+			},
+			card2:{
+				pained:false,
+			},
+		}
+	})
+	</script>
+</body>
+</html>

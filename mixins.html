@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>mixins</title>
+</head>
+<body>
+	<div id="app">
+		<com-one></com-one>
+		<com-two></com-two>
+	</div>
+
+	<script src="lib/vue.js"></script>
+	<script>
+		var base = {
+			methods:{
+				show:function(){
+					this.visible = true;
+				},
+				hide:function(){
+					this.visible = false;
+				},
+				toggle:function(){
+					this.visible = !this.visible;
+				}
+			},
+			data:function(){
+				return{
+					visible:false,
+				}
+			}
+		};
+
+		Vue.component('com-one',{
+			template:`
+				<div>
+					<span @mouseenter="show" @mouseleave="hide">kaoshangqu</span>
+					<div v-if="visible">王志冬</div>
+				</div>
+			`,
+			mixins: [base],
+			data:function(){
+				return {
+					visible:true,
+				}
+			}
+		});
+		Vue.component('com-two',{
+			template:`
+				<div>
+					<button @click="toggle">显示、隐藏</button>
+					<div v-if="visible">
+						<span @click="hide">x</span>
+						<h4>title</h4>
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus magni asperiores a earum, corporis qui, quam eos magnam quae, nobis eius labore nihil repudiandae minima animi? Eius omnis excepturi repudiandae.
+					</div>
+				</div>
+			`,
+			mixins:[base]
+		});
+		new Vue({
+			el:'#app',
+
+		})
+	</script>
+</body>
+</html>

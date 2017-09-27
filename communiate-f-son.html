@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>communicate father-son</title>
+</head>
+<body>
+	<div id="app">
+		<user username="hello"></user>
+	</div>
+
+	<script src="lib/vue.js"></script>
+	<script>
+		Vue.component('user',{
+			template:'<a :href="\'/user/\'+ username">@{{username}}</a>',
+			props:['username'],
+			methods:{}
+		})
+
+		new Vue({
+			el:'#app'
+		})
+	</script>
+</body>
+</html>
